@@ -1,0 +1,1334 @@
+<template name="docs">
+	<div id="documentation" class="container-fluid" style="margin-top: 20px;">
+
+		<ul id="tabs" class="nav nav-pills">
+			<li class="active"><a data-toggle="pill" href="#general">General</a></li>
+			<li class=""><a href="#databases" data-toggle="pill">Databases</a></li>
+			<li class=""><a href="#sparql" data-toggle="pill">SPARQL</a></li>
+			<li class=""><a href="#source" data-toggle="pill">Source</a></li>
+		</ul>
+
+
+		<div class="tab-content">
+
+			<!-- TAB GENERAL -->
+			<div class="tab-pane active" id="general">
+				<div class="row-fluid">
+					<div class="span2 bs-docs-sidebar pull-left">
+						<ul class="nav nav-list bs-docs-sidenav affix">
+							<li><a href="#introduction">General</a></li>
+							<li><a href="#workflow-editor">Workflow (Editor)</a>
+							<li><a href="#workflow-templates">Workflow (Templates)</a></li>
+						</ul>
+					</div>
+					<div class="span10 pull-right">
+						<!-- SECTION GENERAL -->
+						<section id="introduction">
+							<div class="page-header">
+								<h1>General</h1>
+							</div>
+							<p class="lead">If you are new to Semantic Web Technologies, please read <a href="http://www.ebi.ac.uk/rdf/getting-started">this guide</a> by EMBL-EBI first, which should give you an idea of what SPARQL<span style="color:#00bba6;">Graph</span> is about, and to get familiar with RDF and the databases which are used by SPARQL<span style="color:#00bba6;">Graph</span>. </p>
+
+							<h2>What is SPARQL<span style="color:#00bba6;">Graph</span>?</h2>
+							<p>We present SPARQLGraph, a web-based platform for the <strong>visual creation and execution of biological semantic queries</strong>. The graphical query builder allows users to create and share query graphs in a new simple way. Several template queries are provided to offer a great starting point for creating new graphs and assist researchers in finding answers to biological questions. 
+One factor that currently limits the success of semantic web is the requirements of knowing the querying language SPARQL and the exact structure of the used databases. SPARQLGraph is abstracting these burdens from the user and therefore considerably facilitates the creation of semantic queries. The platform actively supports user collaborations through an integrated commenting system and can be extended with additional databases..</p>
+							<h2>Why SPARQL<span style="color:#00bba6;">Graph</span>?</h2>
+								<p>
+									With the rise of high-throughput methods, a plethora of biological data is now available for every life scientist. The vast majority of this data has been made accessible through heterogeneous relational databases and traditional keyword searching. As information is scattered across several databases using different data representations and formats, string based keyword searching and browsing often proves to be impractical. Effective research in life sciences is thereby currently hampered by the absence of integrated databases, and will get even more difficult as more and more biological data accumulates.
+								</p>
+								<p>
+								Over the last few years, Semantic Web (SW) has established itself as a common framework that allows data to be used and shared across applications and database boundaries. Several life science SW services and databases for querying and integrating heterogeneous biological databases have emerged, trying to bring the advantages of the SW to bioinformatics. The Bio2RDF project has converted and interconnected many biological databases to allow federated querying across database boundaries. EMBL very recently launched its own SW platform for several of their own databases, including Uniprot, ChEMBL, and Reactome.
+								</p>
+								<p>
+								Together, these resources combine an enormous amount of biological information, but the <strong>task of querying the semantic data remains an unresolved problem for most researchers</strong>. Typically profound background knowledge of the underlying databases as well as the query language is needed. SPARQL has emerged as the most-widely used language to retrieve and manipulate data stored in the Resource Description Framework (RDF) format, but often proves to be too complex for inexperienced users. As a consequence, several efforts have been made to make the data more accessible and <strong>hide the complexities of the querying language from the end-user</strong>.
+								</p>
+								<p>
+								However, to the best of our knowledge, no service has been published that allows users to graphically build and execute semantic queries without having to deal with the database schemas and underlying SW technologies. Therefore, we have created a web-based platform featuring an intuitive graphical query editor, several predefined template queries, and a clear result presentation.
+								</p>
+								<span class="pull-right"><a href="#" title="Back to top"><i class="icon-arrow-up"></i></a></span>
+						</section>
+
+							<!-- SECTION ARCHITECTURE -->
+							<section id="workflow-editor">
+								<div class="page-header">
+									<h1>Workflow - Editor</h1>
+								</div>
+								<p>The following illustration should give you an idea of how the editor works.</p>
+								<div>
+									<img src="images/workflow_architecture_v2.png">
+								</div>
+								<h2>Step By Step Workflow</h2>
+								<p>Login as the Demo User (user:demo, pass:password), or create a user for yourself. The creation of a own user allows one to build private queries and save/edit/delete them.</p>
+								<p class="text-success"><strong>DEMO USER</strong>: User: demo, Password: password</p>
+								<br>
+								<h4>Create a new Query</h4>
+								<p>From the Main Menu, go to <strong>Editor -> "Create New Query"</strong>.</p>
+								<img src="images/documentation/editor/workflow-editor-1.jpg">
+								<h4>Set Metadata</h4>
+								<p>Set the name, description and category to your needs, <strong>save</strong> the query.</p>
+								<img src="images/documentation/editor/workflow-editor-2.jpg">
+								<h4>Build your query</h4>
+								<p>Build the query with the available elements from the drag & drop Toolbar on the right.</p>
+								<img src="images/documentation/editor/workflow-editor-3.jpg">
+								<br>
+								<h4>Editing Values</h4>
+								<p>All Property Nodes can have their value edited, by simply double clicking the node. As the editor is still in Beta, this is a sensitive action. Please read the tooltip of the node you are editing at all times!</p>
+								<img src="images/documentation/editor/workflow-editor-4.jpg">
+								<br>
+								<h4>Tooltips</h4>
+								<p>All elements offer tooltips when hovering them. These can contain useful information on how to use the hovered node.</p>
+								<p class="text-error"><strong>NOTE</strong>: Information on useage and limitations is offered for many nodes!</p>
+								<img src="images/documentation/editor/workflow-editor-5.jpg">
+								<br>
+								<h4>Connections</h4>
+								<p>Connecting nodes simply works by dragging from one node to the other. Allowed targets of a connection are marked green during drag, while non allowed are marked red.</p>
+								<p class="text-error"><strong>NOTE</strong>: Allowed connections depent fully on the underlying RDF database interconnections.</p>
+								<img src="images/documentation/editor/workflow-editor-6.jpg">
+								<br>
+								<h4>Context Menu (Right Click)</h4>
+								<p>Right clicking a node opens the corresponding context menu. Properties can be added to the result set, set as a template node, or may be deleted, while Entity nodes can only be deleted at this stage.</p>
+								<img src="images/documentation/editor/workflow-editor-7.jpg">
+								<br>
+								<h4>Run the query</h4>
+								<p>When you are done with query creation, save it. To run the query, clicke "Run" on the left. A loading animation should appear and hide, when the query is done. </p>
+								<p class="text-error"><strong>NOTE</strong>: The executing endpoint has a maximum execution time, which means some complex queries will exceed this limit and throw an error!</p>
+								<img src="images/documentation/editor/workflow-editor-8.jpg">
+								<br>
+								<h4>Results</h4>
+								<p>When query execution is successful, a results table should appear below the graph editor. You can also download results as JSON or CSV.</p>
+								<img src="images/documentation/editor/workflow-editor-9.jpg">
+								<div></div>
+								<span class="pull-right"><a href="#" title="Back to top"><i class="icon-arrow-up"></i></a></span>
+							</section>
+							<!-- SECTION WORKFLOW TEMPLATES -->
+							<section id="workflow-templates">
+								<div class="page-header">
+									<h1>Workflow - Templates</h1>
+								</div>
+								<h2>Step By Step Workflow</h2>
+								<p>You can run and edit a template query without logging in. However, you can not save them.</p>
+								<br>
+								<h4>Choose a Query</h4>
+								<p>From the Main Menu, go to <strong>Templates</strong>. Choose a query there.</p>
+								<h4>Edit the Query</h4>
+								<p>When you chose a query, the template editor for this query should show up and look like on the image below.<br>
+								   You should see the query graph to the right. One or more nodes in the graph should be marked with a star to their lower left, like the one in the image below. These nodes are editable and called "Template" Nodes, as they should serve as a changeable template for the given query construct. 
+								</p>
+								<img src="images/documentation/template/template-editor-1.jpg">
+								<p>You might also see nodes with a "Left-Right" icon like shown in the image below. These nodes are the ones which will be part of the result table. If no nodes have this icon, the complete result set will be shown. You can also add and remove nodes from the result set, by right clicking them and choosing "Result Set". To remove a node from the result set, left click its icon.</p>
+								<img src="images/documentation/template/template-editor-2.jpg">
+								<span class="pull-right"><a href="#" title="Back to top"><i class="icon-arrow-up"></i></a></span>
+							</section>
+
+						</div> <!-- close div class="span9 pull-right" -->
+					</div> <!-- close div class="row-fluid" -->
+				</div> <!-- close div class="tab-pane active" id="general" -->
+
+
+				<!-- TAB DATABASES -->
+				<div class="tab-pane" id="databases">
+					<div class="row-fluid">
+						<div class="span2 bs-docs-sidebar pull-left">
+							<h3 class="bs-docs-sidenav-ebi affix">EBI</h3>
+							<ul class="nav nav-list bs-docs-sidenav affix ebi">
+								<li><a href="#atlas">Atlas</a></li>
+								<li><a href="#chembl">ChEMBL</a></li>
+								<li><a href="#reactome">Reactome</a></li>
+								<li><a href="#uniprot">Uniprot</a></li>
+							</ul>
+							<br>
+							<h3 class="bs-docs-sidenav-bio2rdf affix">Bio2RDF</h3>
+							<ul class="nav nav-list bs-docs-sidenav affix bio2rdf">
+								<li><a href="#drugbank">Drugbank</a></li>
+								<li><a href="#entrez-gene">Entrez Gene</a></li>
+								<li><a href="#kegg">KEGG</a></li>
+							</ul>
+						</div>
+						<div class="span10 pull-right">
+							<!-- SECTION Atlas -->
+							<section id="atlas">
+								<div class="page-header">
+									<h1>Atlas - EBI</h1>
+								</div>
+								<h2>Atlas Schema</h2>
+								<p>In the following image you can see the RDF Schema of the Gene Expression Atlas Database by EMBL-EBI. Implemented nodes and connections are marked with a red X. <br>For further reference, see the original <a href="http://www.ebi.ac.uk/rdf/documentation/atlas">Atlas Documentation</a>.</p>
+								<br>
+								<img src="images/ExpressionAtlasSimpleSchema_editor.jpg">
+								<br>
+
+								<h2>ATLAS - SPARQL<span style="color:#00bba6;">edit</span> Implementation</h2>
+								<p>The following list should give an overview of all resources, literals and connections that were implemented in the prototype.</p>
+								<hr>
+
+								<h3>Experiment</h3>
+								<p>An experiment is an investigation that has the goal of verifying, falsifying, or establishing the validity of a hypothesis.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/atlas/describe?uri=http://rdf.ebi.ac.uk/resource/atlas/E-GEOD-20266">Link</a></li>
+									<li><strong>Label</strong>: Experiment</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/Experiment</li>
+									<li><strong>Targets</strong>: Atlas Organism, Atlas Assay, Atlas DIfferential Expression Analysis, Experiment Description, Experiment URL, Experiment ID, Experiment Pubmed ID</li>
+								</ul>
+								<br>
+								<h4>Experiment - Description</h4>
+								<p>Equals the name in Atlas database of an experiment.</p>
+								<ul>
+									<li><strong>Label</strong>: Description</li>
+									<li><strong>RDF Type</strong>: http://purl.org/dc/terms/description</li>
+									<li><strong>Source</strong>: Atlas Experiment</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+								</ul>
+								<br>
+								<h4>Experiment - ID</h4>
+								<p>Exact experiment ID, like "E-GEOD-20266".</p>
+								<ul>
+									<li><strong>Label</strong>: Description</li>
+									<li><strong>RDF Type</strong>: http://purl.org/dc/terms/identifier</li>
+									<li><strong>Source</strong>: Atlas Experiment</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+									<li><strong>Literal Type</strong>: http://www.w3.org/2001/XMLSchema#string</li>
+								</ul>
+								<br>
+								<h4>Experiment - URL</h4>
+								<p>Atlas database URL of the experiment.</p>
+								<ul>
+									<li><strong>Label</strong>: URL</li>
+									<li><strong>RDF Type</strong>: http://xmlns.com/foaf/0.1/page</li>
+									<li><strong>Source</strong>: Atlas Experiment</li>
+									<li><strong>Filter Type</strong>: None</li>
+								</ul>
+								<br>
+								<h4>Experiment - Pubmed ID</h4>
+								<p>Annotated Pubmed Article IDs for this experiment</p>
+								<ul>
+									<li><strong>Label</strong>: Pubmed ID</li>
+									<li><strong>Example</strong>: 18156220</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/pubmedid</li>
+									<li><strong>Source</strong>: Atlas Experiment</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+								</ul>
+								<br>
+								<h3>Organism</h3>
+								<p>A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/atlas/describe?uri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_9606">Link</a></li>
+									<li><strong>Label</strong>: Organism</li>
+									<li><strong>RDF Type</strong>: http://purl.obolibrary.org/obo/OBI_0100026</li>
+									<li><strong>Sources</strong>: Atlas Experiment, Atlas Factor, Atlas Design Platform</li>
+									<li><strong>Targets</strong>: None</li>
+								</ul>
+								<br>
+								<h4>Organism - ID</h4>
+								<p>NCBI Taxonomy Identifier.</p>
+								<ul>
+									<li><strong>Label</strong>: ID</li>
+									<li><strong>Example</strong>: 9606</li>
+									<li><strong>RDF Type</strong>: http://purl.org/dc/terms/identifier</li>
+									<li><strong>Source</strong>: Atlas Organism</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+									<li><strong>Literal Type</strong>: http://www.w3.org/2001/XMLSchema#string</li>
+								</ul>
+								<br>
+								<h4>Organism - Label</h4>
+								<p>Human readable taxonomy name.</p>
+								<ul>
+									<li><strong>Label</strong>: Label</li>
+									<li><strong>Example</strong>: homo sapiens</li>
+									<li><strong>RDF Type</strong>: http://www.w3.org/2000/01/rdf-schema#label</li>
+									<li><strong>Source</strong>: Atlas Organism</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+								</ul>
+								<br>
+								<h3>Assay</h3>
+								<p>An assay is an investigative (analytic) procedure in laboratory medicine, pharmacology, environmental biology, and molecular biology for qualitatively assessing or quantitatively measuring the presence or amount or the functional activity of a target entity (the analyte) which can be a drug or biochemical substance or a cell in an organism or organic sample.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/atlas/describe?uri=http%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fatlas%2FE-GEOD-20266%2313.07-assay-0F79E317E655CE2FE82007977F48C9C7">Link</a></li>
+									<li><strong>Label</strong>: Assay</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/Assay</li>
+									<li><strong>Targets</strong>: Atlas Sample</li>
+								</ul>
+
+								<h3>Sample</h3>
+								<p>A sample is a limited quantity of something (e.g. an individual or set of individuals from a population, or a portion of a substance) to be used for testing, analysis, inspection, investigation, demonstration, or trial use.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/atlas/describe?uri=http%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fatlas%2FE-GEOD-20266%2313.07-sample-1D9C572973FEBBB59FDC43837D70CF20">Link</a></li>
+									<li><strong>Label</strong>: Sample</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/Sample</li>
+									<li><strong>Targets</strong>: Experimental Factor, Organism, EFO</li>
+								</ul>
+
+								<h3>Experimental Factor Ontology (EFO, <a href="http://www.ebi.ac.uk/efo/" target="_blank">Link</a>)</h3>
+								<p>The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for external projects such as the NHGRI GWAS catalogue. It combines parts of several biological ontologies, such as anatomy, disease and chemical compounds.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/atlas/describe?uri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000305">Link</a></li>
+									<li><strong>Label</strong>: EFO</li>
+									<li><strong>RDF Type</strong>: None</li>
+									<li><strong>Targets</strong>: EFO (SubClassOf predicate) </li>
+								</ul>
+								<br>
+								<h4>EFO - Label</h4>
+								<p>Human readable taxonomy/class name.</p>
+								<ul>
+									<li><strong>Label</strong>: Label</li>
+									<li><strong>Example</strong>: breast carcinoma</li>
+									<li><strong>RDF Type</strong>: http://www.w3.org/2000/01/rdf-schema#label</li>
+									<li><strong>Source</strong>: Atlas EFO</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+									<li><strong>Literal Type</strong>: http://www.w3.org/2001/XMLSchema#string</li>
+								</ul>
+								<br>
+								<h4>EFO - Definition</h4>
+								<p>Short definition.</p>
+								<ul>
+									<li><strong>Label</strong>: Definition</li>
+									<li><strong>Example</strong>: Tumors or cancer of the human BREAST.</li>
+									<li><strong>RDF Type</strong>: http://www.ebi.ac.uk/efo/definition</li>
+									<li><strong>Source</strong>: Atlas EFO</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+								</ul>
+								<br>
+								<h4>EFO - ID</h4>
+								<p>Exact EFO ID.</p>
+								<ul>
+									<li><strong>Label</strong>: EFO ID</li>
+									<li><strong>Example</strong>: EFO_0000305</li>
+									<li><strong>RDF Type</strong>: http://www.ebi.ac.uk/rdf/services/atlas/sparql</li>
+									<li><strong>Source</strong>: Atlas EFO</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+									<li class="text-error"><strong>Notes</strong>: If you use this property, you MUST enter a valid EFO ID, otherwise!the query won't work!</li>
+								</ul>
+								<br>
+								<h3>Differential Expression Analysis</h3>
+								<p>A differential expression analysis data transformation is a data transformation that has objective differential expression analysis.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/atlas/describe?uri=http%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fatlas%2FE-GEOD-20266%23A10C860A0A13AED7D400C2B2D874E7B4">Link</a></li>
+									<li><strong>Label</strong>: Diff. Expression Analysis</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/DifferentialExpressionAnalysis</li>
+									<li><strong>Targets</strong>: Increased Expression Value, Decreased Expression Value, Design Platform</li>
+								</ul>
+								<br>
+								<h4>Diff. Expression Analysis - Label</h4>
+								<p>Label, containing the experiment id and platform id.</p>
+								<ul>
+									<li><strong>Label</strong>: Label</li>
+									<li><strong>Example</strong>: differential analysis on E-GEOD-20266 / A-AFFY-44</li>
+									<li><strong>RDF Type</strong>: http://www.w3.org/2000/01/rdf-schema#label</li>
+									<li><strong>Source</strong>: Atlas Diff. Expression Analysis</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+								</ul>
+								<br>
+								<h3>Increased Expression Value</h3>
+								<p>A increased ratio of gene expression values from a test sample compared to a control sample.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/atlas/describe?uri=http%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fatlas%2FE-GEOD-20266%2313.07-expression-156848250F8037CA38BC9B08B28ACCB0">Link</a></li>
+									<li><strong>Label</strong>: Increased Expression Value</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/IncreasedDifferentialExpressionRatio</li>
+									<li><strong>Targets</strong>: Atlas Factor, Atlas Design Element</li>
+								</ul>
+								<br>
+								<h4>Increased Expression Value - Label</h4>
+								<p>Label, containing the gene, "UP", and where/which group.</p>
+								<ul>
+									<li><strong>Label</strong>: Label</li>
+									<li><strong>Example</strong>: RP11-358M11.2 UP in breast cancer</li>
+									<li><strong>RDF Type</strong>: http://www.w3.org/2000/01/rdf-schema#label</li>
+									<li><strong>Source</strong>: Increased Expression Value</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+								</ul>
+								<br>
+								<h4>Increased Expression Value - p-Value</h4>
+								<p>p-Value...</p>
+								<ul>
+									<li><strong>Label</strong>: p-Value</li>
+									<li><strong>Example</strong>: 0.019287596</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/pValue</li>
+									<li><strong>Source</strong>: Increased Expression Value</li>
+									<li><strong>Filter Type</strong>: Numeric, which means, you can use filters like: "< 0.001" or ">= 0.05"</li>
+								</ul>
+
+								<br>
+								<h4>Increased Expression Value - t-Statistic</h4>
+								<p>t-Statistic...</p>
+								<ul>
+									<li><strong>Label</strong>: t-Statistic</li>
+									<li><strong>Example</strong>: 5.8903055</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/tStatistic</li>
+									<li><strong>Source</strong>: Increased Expression Value</li>
+									<li><strong>Filter Type</strong>: Numeric, which means, you can use filters like: "< 8" or ">= 10"</li>
+								</ul>
+								<br>
+								<h3>Decreased Expression Value</h3>
+								<p>A decreased ratio of gene expression values from a test sample compared to a control sample.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/atlas/describe?uri=http%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fatlas%2FE-GEOD-20266%2313.07-expression-62434BDF4675CC6471B14D94B50E7DC6">Link</a></li>
+									<li><strong>Label</strong>: Decreased Expression Value</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/DecreasedDifferentialExpressionRatio</li>
+									<li><strong>Targets</strong>: Atlas Factor, Atlas Design Element</li>
+								</ul>
+								<br>
+								<h4>Decreased Expression Value - Label</h4>
+								<p>Label, containing the gene, "DOWN", and where/which group.</p>
+								<ul>
+									<li><strong>Label</strong>: Label</li>
+									<li><strong>Example</strong>: RP11-358M11.2 DOWN in healthy control</li>
+									<li><strong>RDF Type</strong>: http://www.w3.org/2000/01/rdf-schema#label</li>
+									<li><strong>Source</strong>: Decreased Expression Value</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+								</ul>
+								<br>
+								<h4>Decreased Expression Value - p-Value</h4>
+								<p>p-Value...</p>
+								<ul>
+									<li><strong>Label</strong>: p-Value</li>
+									<li><strong>Example</strong>: 0.019287596</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/pValue</li>
+									<li><strong>Source</strong>: Decreased Expression Value</li>
+									<li><strong>Filter Type</strong>: Numeric, which means, you can use filters like: "< 0.001" or ">= 0.05"</li>
+								</ul>
+								<br>
+								<h4>Decreased Expression Value - t-Statistic</h4>
+								<p>t-Statistic...</p>
+								<ul>
+									<li><strong>Label</strong>: t-Statistic</li>
+									<li><strong>Example</strong>: 5.8903055</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/tStatistic</li>
+									<li><strong>Source</strong>: Decreased Expression Value</li>
+									<li><strong>Filter Type</strong>: Numeric, which means, you can use filters like: "< -4" or ">= -6"</li>
+								</ul>
+								<br>
+								<h3>Factor</h3>
+								<p>An experimental factor is a variable that may change within the scope of a given experiment.</p>
+								<ul>
+									<li>RDF Example (Context - Differential Expression Ratio): <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/atlas/describe?uri=http%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fatlas%2FexperimentFactor%23942F7EACEFCCF308B66D577C49F4C833">Link</a></li>
+									<li>RDF Example (Context - Sample): <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/atlas/describe?uri=http%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fatlas%2FE-GEOD-20266%2313.07-sample-characteristic-A1EDF264C2ECE0756EAAAD1D744F526C">Link</a></li>
+									<li><strong>Label</strong>: Factor</li>
+									<li><strong>RDF Type</strong>: None</li>
+									<li><strong>Targets</strong>: Atlas Organism, Atlas EFO</li>
+									<li><strong>Notes</strong>: A factor could be disease/breast cancer, organism/homo sapiens, biosource/saliva, genotype/wild type. Check Atlas Experiments for more examples: <a href="http://www.ebi.ac.uk/gxa/experiment/index.htm">Link</a> (Last column)</li>
+								</ul>
+								<br>
+								<h4>Factor - Label</h4>
+								<p>Label, containing the experiment ID, and factor type and value</p>
+								<ul>
+									<li><strong>Label</strong>: Label</li>
+									<li><strong>Example</strong>: (E-GEOD-20266 sample characteristic) disease/breast cancer</li>
+									<li><strong>RDF Type</strong>: http://www.w3.org/2000/01/rdf-schema#label</li>
+									<li><strong>Source</strong>: Factor</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+								</ul>
+								<br>
+								<h4>Factor - Type</h4>
+								<p>Type of the factor.</p>
+								<ul>
+									<li><strong>Label</strong>: Type</li>
+									<li><strong>Example</strong>: disease</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/propertyType</li>
+									<li><strong>Source</strong>: Factor</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+									<li><strong>Notes</strong>: See Atlas Experiments for examples, you can find it in the column "Experimental Factor" of each experiment, like: organism part, phenotype, genotype, cell type, disease, cell type, time, age...</li>
+								</ul>
+								<br>
+								<h4>Factor - Value</h4>
+								<p>Value of the factor.</p>
+								<ul>
+									<li><strong>Label</strong>: Value</li>
+									<li><strong>Example</strong>: breast cancer</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/propertyValue</li>
+									<li><strong>Source</strong>: Factor</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+									<li><strong>Notes</strong>: See Atlas Experiments for examples, you can find it in the column "Factor Value" of each experiment, like: 72 hours, wild type, normal, spontaneous lung tumor... </li>
+								</ul>
+								<br>
+								<h4>Factor - EFO Type</h4>
+								<p>EFO Type ID</p>
+								<ul>
+									<li><strong>Label</strong>: EFO Type</li>
+									<li><strong>Example</strong>: EFO_0000305</li>
+									<li><strong>RDF Type</strong>: http://www.w3.org/1999/02/22-rdf-syntax-ns#type</li>
+									<li><strong>Source</strong>: Factor</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+									<li><strong>Notes</strong>: This is only working in the context of Sample characteristics (i.e. link from Atlas Sample to this Atlas Factor).</li>
+								</ul>
+								<br>
+								<h3>Design Platform</h3>
+								<p>An instrument design which specifes a platform for doing gene expression detection.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/atlas/describe?uri=http%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fatlas%2FA-AFFY-44">Link</a></li>
+									<li><strong>Label</strong>: Design Platform</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/DesignPlatform</li>
+									<li><strong>Targets</strong>: Atlas Organism</li>
+									<li><strong>Notes</strong>: </li>
+								</ul>
+								<br>
+								<h4>Design Platform - ID</h4>
+								<p>Platform ID</p>
+								<ul>
+									<li><strong>Label</strong>: ID</li>
+									<li><strong>Example</strong>: A-AFFY-44</li>
+									<li><strong>RDF Type</strong>: http://purl.org/dc/terms/identifier</li>
+									<li><strong>Source</strong>: Design Platform</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+									<li><strong>Literal Type</strong>: http://www.w3.org/2001/XMLSchema#string</li>
+								</ul>
+								<br>
+								<h4>Design Platform - Manufacturer</h4>
+								<p>Platform ID.</p>
+								<ul>
+									<li><strong>Label</strong>: Manufacturer</li>
+									<li><strong>Example</strong>: Affymetrix, Inc.</li>
+									<li><strong>RDF Type</strong>: http://purl.org/dc/terms/source</li>
+									<li><strong>Source</strong>: Design Platform</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+									<li><strong>Literal Type</strong>: http://www.w3.org/2001/XMLSchema#string</li>
+								</ul>
+								<br>
+								<h3>Design Element</h3>
+								<p>The probe which is used in an assay such as an array for detecting sequence or gene expression levels.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/atlas/describe?uri=http%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fatlas%2FA-AFFY-44%3A1294_at">Link</a></li>
+									<li><strong>Label</strong>: Design Element</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/ProbeDesignElement</li>
+									<li><strong>Targets</strong>: Atlas Design Plaform, Atlas Ensembl/Entrez/Uniprot Reference, Uniprot Protein</li>
+									<li><strong>Notes</strong>: </li>
+								</ul>
+								<br>
+								<h4>Design Element - ID</h4>
+								<p>Element ID.</p>
+								<ul>
+									<li><strong>Label</strong>: ID</li>
+									<li><strong>Example</strong>: 1294_at</li>
+									<li><strong>RDF Type</strong>: http://purl.org/dc/terms/identifier</li>
+									<li><strong>Source</strong>: Design Element</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+									<li><strong>Literal Type</strong>: http://www.w3.org/2001/XMLSchema#string</li>
+								</ul>
+								<br>
+								<h3>Uniprot/Entrez/Ensembl Reference</h3>
+								<p>Reference to ID's of these databases.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/atlas/describe?uri=http%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fatlas%2FA-AFFY-44%3A1294_at">Link</a></li>
+									<li><strong>Label</strong>: Design Element</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/atlas/ProbeDesignElement</li>
+									<li><strong>Targets</strong>: Atlas Design Plaform, Atlas Ensembl/Entrez/Uniprot Reference, Uniprot Protein</li>
+									<li><strong>Notes</strong>: </li>
+								</ul>
+								<br>
+								<h4>Uniprot/Entrez/Ensembl Reference - ID</h4>
+								<p>Exact ID in the referenced databse</p>
+								<ul>
+									<li><strong>Label</strong>: ID</li>
+									<li><strong>Example</strong>: Uniprot: P41226, Ensembl: ENSG00000263506, Entrez: 7318</li>
+									<li><strong>RDF Type</strong>: http://purl.org/dc/terms/identifier</li>
+									<li><strong>Source</strong>: Uniprot/Entrez/Ensembl Reference</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+									<li><strong>Literal Type</strong>: http://www.w3.org/2001/XMLSchema#string</li>
+								</ul>
+							</section> <!-- close database/atlas -->
+
+
+							<!-- SECTION CHEMBL -->
+							<section id="chembl">
+								<div class="page-header">
+									<h1>ChEMBL</h1>
+								</div>
+
+								<h2>ChEMBL Schema</h2>
+								<p>In the following image you can see the RDF Schema of the ChEMBL database by EMBL-EBI. Implemented nodes and connections are marked with a red X. <br>For further reference, see the original <a href="http://www.ebi.ac.uk/rdf/documentation/chembl">ChEMBL Documentation</a>.</p>
+								<br>
+								<img src="images/chembl_rdf_schema_editor.jpg">
+								<br>
+
+								<h2>ChEMBL - SPARQL<span style="color:#00bba6;">edit</span> Implementation</h2>
+								<p>The following list should give an overview of all resources, literals and connections that were implemented in the prototype.</p>
+								<span class="pull-right"><a href="#" title="Back to top"><i class="icon-arrow-up"></i></a></span>
+								<hr>
+
+								<h3>Compound</h3>
+								<p>A molecule.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/chembl/describe?uri=http%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fmolecule%2FCHEMBL941">Link</a></li>
+									<li>Original Example: <a target="_blank" href="https://www.ebi.ac.uk/chembl/compound/inspect/CHEMBL941">Link</a></li>
+									<li><strong>Label</strong>: Compound</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#SmallMolecule</li>
+									<li><strong>Targets</strong>: ChEMBL Document, ChEMBL Activity</li>
+								</ul>
+								<h4>Compound - Label</h4>
+								<p>Molecule label</p>
+								<ul>
+									<li><strong>Label</strong>: Label</li>
+									<li><strong>Example</strong>: IMATINIB</li>
+									<li><strong>RDF Type</strong>: http://www.w3.org/2000/01/rdf-schema#label</li>
+									<li><strong>Source</strong>: Compound</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+								</ul>
+								<br>
+								<h4>Compound - Development Phase</h4>
+								<p>The highest phase the molecule has reached in drug approval process (4 = approved)</p>
+								<ul>
+									<li><strong>Label</strong>: Phase</li>
+									<li><strong>Example</strong>: 4</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#highestDevelopmentPhase</li>
+									<li><strong>Source</strong>: Compound</li>
+									<li><strong>Filter Type</strong>: Numeric, which means, you can use filters like: "> 3" or "4"</li>
+								</ul>
+								<br>
+								<h4>Compound - ATC Code</h4>
+								<p>The highest phase the molecule has reached in drug approval process (4 = approved)</p>
+								<ul>
+									<li><strong>Label</strong>: ATC Code</li>
+									<li><strong>Example</strong>: C07AB02</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#atcClassification</li>
+									<li><strong>Source</strong>: Compound</li>
+									<li><strong>Filter Type</strong>: Regular Expression. Sublevels of ATC also work! Like "C03" for diuretics.</li>
+								</ul>
+								<br>
+								<h3>Document</h3>
+								<p>A ChEMBL document.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/chembl/describe?uri=http%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fdocument%2FCHEMBL1152590">Link</a></li>
+									<li><strong>Label</strong>: Document</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#Document</li>
+									<li><strong>Targets</strong>: ChEMBL Compound, ChEMBL Assay, ChEMBL Activity</li>
+								</ul>
+								<h4>Document - ID</h4>
+								<p>Document ID.</p>
+								<ul>
+									<li><strong>Label</strong>: ID</li>
+									<li><strong>Example</strong>: CHEMBL1152590</li>
+									<li><strong>RDF Type</strong>: http://purl.org/dc/terms/identifier</li>
+									<li><strong>Source</strong>: Document</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+								</ul>
+								<br>
+								<br>
+								<h3>Activity</h3>
+								<p>A ChEMBL activity.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/chembl/describe?uri=http://rdf.ebi.ac.uk/resource/chembl/activity/CHEMBL_ACT_1187331">Link</a></li>
+									<li><strong>Label</strong>: Activity</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#Activity</li>
+									<li><strong>Targets</strong>: ChEMBL Compound, ChEMBL Assay, ChEMBL Document</li>
+								</ul>
+								<br>
+								<h4>Activity - Standard Type</h4>
+								<p>Standardised version of the publishedType, e.g. IC50 rather than Ic-50/Ic50/ic50/ic-50</p>
+								<ul>
+									<li><strong>Label</strong>: Type</li>
+									<li><strong>Example</strong>: Ki, IC50</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#standardType</li>
+									<li><strong>Source</strong>: Activity</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+								</ul>
+								<br>
+								<h4>Activity - Standard Units</h4>
+								<p>Standardised version of the publishedUnits, e.g. concentrations are in nM.</p>
+								<ul>
+									<li><strong>Label</strong>: Units</li>
+									<li><strong>Example</strong>: nM</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#standardUnits</li>
+									<li><strong>Source</strong>: Activity</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+								</ul>
+								<br>
+								<h4>Activity - Standard Value</h4>
+								<p>Standardised version of the publishedValue. Transformed to common units: e.g. All concentration values are converted to values in nannoMolar, all time values are converted to minutes etc</p>
+								<ul>
+									<li><strong>Label</strong>: Value</li>
+									<li><strong>Example</strong>: nM</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#standardValue</li>
+									<li><strong>Source</strong>: Activity</li>
+									<li><strong>Filter Type</strong>: Numeric, which means, you can use filters like: "> 23000" or "19540.0".</li>
+								</ul>
+								<br>
+								<h3>Assay</h3>
+								<p>A ChEMBL assay.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/chembl/describe?uri=http://rdf.ebi.ac.uk/resource/chembl/assay/CHEMBL1074671">Link</a></li>
+									<li><strong>Label</strong>: Assay</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#Assay</li>
+									<li><strong>Targets</strong>: ChEMBL Protein, ChEMBL Protein Family, ChEMBL Document</li>
+								</ul>
+								<br>
+								<h4>Assay - Label/ID</h4>
+								<p>Standardised version of the ChEMBL ID for this Assay.</p>
+								<ul>
+									<li><strong>Label</strong>: ID</li>
+									<li><strong>Example</strong>: CHEMBL1074671</li>
+									<li><strong>RDF Type</strong>: http://www.w3.org/2000/01/rdf-schema#label</li>
+									<li><strong>Source</strong>: Assay</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+								</ul>
+								<br>
+								<h4>Assay - Description</h4>
+								<p>Short description of this Assay.</p>
+								<ul>
+									<li><strong>Label</strong>: Description</li>
+									<li><strong>Example</strong>: Inhibition of Akt phosphorylation in human HT-29 cells after 12 hrs by Western blotting</li>
+									<li><strong>RDF Type</strong>: http://purl.org/dc/terms/description</li>
+									<li><strong>Source</strong>: Assay</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+								</ul>
+								<br>
+								<h4>Assay - Type</h4>
+								<p>Assay classification, e.g. Binding assay, ADME assay or Functional assay.</p>
+								<ul>
+									<li><strong>Label</strong>: Type</li>
+									<li><strong>Example</strong>: Binding</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#assayType</li>
+									<li><strong>Source</strong>: Assay</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+								</ul>
+								<br>
+								<h4>Assay - Cell Type</h4>
+								<p>Name of cell type or cell line used in the assay system (e.g., for cell-based assays).</p>
+								<ul>
+									<li><strong>Label</strong>: Cell Type</li>
+									<li><strong>Example</strong>: HT-29</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#assayCellType</li>
+									<li><strong>Source</strong>: Assay</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+								</ul>
+								<br>
+								<h4>Assay - Target Confidence Score</h4>
+								<p>Confidence score, indicating how accurately the assigned target(s) represents the actually assay target. Foreign key to CONFIDENCE_SCORE table. 0 means uncurated/unassigned, 1 = low confidence to 9 = high confidence.</p>
+								<ul>
+									<li><strong>Label</strong>: Target Confidence Score</li>
+									<li><strong>Example</strong>: 9, >4</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#targetConfScore</li>
+									<li><strong>Source</strong>: Assay</li>
+									<li><strong>Filter Type</strong>: Numeric, which means, you can use filters like: "< 8" or "9"</li>
+								</ul>
+								<br>
+								<h3>Protein (Single)</h3>
+								<p>ChEMBL SingleProtein Class.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/chembl/describe?uri=http://rdf.ebi.ac.uk/resource/chembl/target/CHEMBL1938223">Link</a></li>
+									<li><strong>Label</strong>: Protein</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#SingleProtein</li>
+									<li><strong>Targets</strong>: ChEMBL Protein Class, ChEMBL Assay, ChEMBL Target Component</li>
+								</ul>
+								<br>
+								<h4>Protein - Label</h4>
+								<p>ChEMBL Protein preferred name (example: https://www.ebi.ac.uk/chembldb/target/inspect/CHEMBL1938223).</p>
+								<ul>
+									<li><strong>Label</strong>: Label</li>
+									<li><strong>Example</strong>: TP53-regulating kinase</li>
+									<li><strong>RDF Type</strong>: http://www.w3.org/2000/01/rdf-schema#label</li>
+									<li><strong>Source</strong>: Protein</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+								</ul>
+								<br>
+								<h4>Protein - Type</h4>
+								<p>Describes whether target is a protein, an organism, a tissue etc.</p>
+								<ul>
+									<li><strong>Label</strong>: Type</li>
+									<li><strong>Example</strong>: SINGLE PROTEIN</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#targetType</li>
+									<li><strong>Source</strong>: Protein</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+								</ul>
+								<br>
+								<h4>Protein - Organism ID</h4>
+								<p>Protein Organism ID.</p>
+								<ul>
+									<li><strong>Label</strong>: Organism ID</li>
+									<li><strong>Example</strong>: "9606" for Homo Sapiens</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#taxonomy</li>
+									<li><strong>Source</strong>: Protein</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+								</ul>
+								<br>
+								<h3>Protein Classification</h3>
+								<p>ChEMBL ProteinClassification Class, for example Enzyme or CYP_11.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/chembl/describe?uri=http://rdf.ebi.ac.uk/resource/chembl/protclass/CHEMBL_PC_1">Link</a></li>
+									<li><strong>Label</strong>: Protein Classification</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#ProteinClassification</li>
+									<li><strong>Targets</strong>: ChEMBL Protein Family, ChEMBL Protein, ChEMBL Target Component</li>
+								</ul>
+								<br>
+								<h4>Protein Classification - Label</h4>
+								<p>Protein Classification Label.</p>
+								<ul>
+									<li><strong>Label</strong>: Label</li>
+									<li><strong>Example</strong>: Enzyme</li>
+									<li><strong>RDF Type</strong>: http://www.w3.org/2000/01/rdf-schema#label</li>
+									<li><strong>Source</strong>: Protein Classification</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+								</ul>
+								<br>
+								<h3>Protein Family</h3>
+								<p>Target is a group of closely related proteins.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/chembl/describe?uri=http://rdf.ebi.ac.uk/resource/chembl/target/CHEMBL2093865">Link</a></li>
+									<li><strong>Label</strong>: Protein Family</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#ProteinFamily</li>
+									<li><strong>Targets</strong>: ChEMBL Protein Classification, ChEMBL Target Component, ChEMBL Assay</li>
+								</ul>
+								<br>
+								<h4>Protein Family - Label</h4>
+								<p>Protein Family Label.</p>
+								<ul>
+									<li><strong>Label</strong>: Label</li>
+									<li><strong>Example</strong>: Histone deacetylase</li>
+									<li><strong>RDF Type</strong>: http://www.w3.org/2000/01/rdf-schema#label</li>
+									<li><strong>Source</strong>: Protein Family</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+								</ul>
+								<br>
+								<h4>Protein Family - Organism ID</h4>
+								<p>Protein Family Organism ID.</p>
+								<ul>
+									<li><strong>Label</strong>: Organism ID</li>
+									<li><strong>Example</strong>: "9606" for Homo Sapiens</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#taxonomy</li>
+									<li><strong>Source</strong>: Protein Family</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+								</ul>
+								<br>
+								<h3>Target Component</h3>
+								<p>A component of a ChEMBL target, which is either of type Protein, Protein Family or Protein Classification. For example: Assay A has target Protein Family B, and Protein C is a member of the protein family. Then C is a Target Component (because Family is the Target)! If the target itself is a Protein, then the Target Component is simply the Protein again.</p>
+								<ul>
+									<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/chembl/describe?uri=http://rdf.ebi.ac.uk/resource/chembl/targetcomponent/CHEMBL_TC_5761">Link</a></li>
+									<li><strong>Label</strong>: Target Component</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#TargetComponent</li>
+									<li><strong>Targets</strong>: ChEMBL Protein Classification, ChEMBL Protein Family, ChEMBL Protein, Uniprot Protein</li>
+								</ul>
+								<br>
+								<h4>Target Component - Description</h4>
+								<p>Target Component description, which is usually the protein name.</p>
+								<ul>
+									<li><strong>Label</strong>: Description</li>
+									<li><strong>Example</strong>: "9606" for Homo Sapiens</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#taxonomy</li>
+									<li><strong>Source</strong>: Target Component</li>
+									<li><strong>Filter Type</strong>: Regular Expression</li>
+								</ul>
+								<br>
+								<h4>Target Component - Organism ID</h4>
+								<p>Target Component Organism ID.</p>
+								<ul>
+									<li><strong>Label</strong>: Organism ID</li>
+									<li><strong>Example</strong>: "9606" for Homo Sapiens</li>
+									<li><strong>RDF Type</strong>: http://rdf.ebi.ac.uk/terms/chembl#taxonomy</li>
+									<li><strong>Source</strong>: Target Component</li>
+									<li><strong>Filter Type</strong>: Exact Match</li>
+								</ul>
+								<br>
+
+								<br>
+								<span class="pull-right"><a href="#" title="Back to top"><i class="icon-arrow-up"></i></a></span>
+							</section>
+
+
+
+							<!-- SECTION REACTOME -->
+							<section id="reactome">
+								<div class="page-header">
+									<h1>Reactome</h1>
+								</div>
+								<h2>Reactome Schema</h2>
+								<p>In the following image you can see the implemented RDF Schema. For further reference, see the original <a href="http://www.ebi.ac.uk/rdf/documentation/reactome">Reactome Documentation</a>.<br>
+									<strong>NOTE</strong>: The implementation is incomplete, and does not reflect the whole RDF Schema by EBI.</p>
+									<br>
+									<img src="images/Reactome_RDF_schema.png">
+									<br>
+
+									<h2>REACTOME - SPARQL<span style="color:#00bba6;">edit</span> Implementation</h2>
+									<p>The following list should give an overview of all resources, literals and connections that were implemented in the prototype.</p>
+									<hr>
+									<span class="pull-right"><a href="#" title="Back to top"><i class="icon-arrow-up"></i></a></span>
+
+									<h3>Pathway</h3>
+									<p>A Reactome pathway.</p>
+									<ul>
+										<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/reactome/describe?uri=http%3A%2F%2Fidentifiers.org%2Freactome%2FREACT_15550.4">Link</a></li>
+										<li><strong>Label</strong>: Pathway</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#Pathway</li>
+										<li><strong>Targets</strong>: Reactome Taxonomy, Reactome Reaction</li>
+									</ul>
+									<br>
+									<h4>Pathway - Name</h4>
+									<p>Pathway name.</p>
+									<ul>
+										<li><strong>Label</strong>: Name</li>
+										<li><strong>Example</strong>: Insulin Processing</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#displayName</li>
+										<li><strong>Source</strong>: Pathway</li>
+										<li><strong>Filter Type</strong>: Regular Expression</li>
+									</ul>
+									<br>
+									<h4>Pathway - Comment</h4>
+									<p>Pathway comments.</p>
+									<ul>
+										<li><strong>Label</strong>: Name</li>
+										<li><strong>Example</strong>: The generation of insulin-containing secretory granules from proinsulin...</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#comment.owl#displayName</li>
+										<li><strong>Source</strong>: Pathway</li>
+										<li><strong>Filter Type</strong>: Regular Expression</li>
+									</ul>
+									<br>
+
+									<h3>Taxonomy</h3>
+									<p>A Reactome Taxonomy.</p>
+									<ul>
+										<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/reactome/describe?uri=http%3A%2F%2Fidentifiers.org%2Ftaxonomy%2F9606">Link</a></li>
+										<li><strong>Label</strong>: Organsim</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#Pathway</li>
+										<li><strong>Targets</strong>: None</li>
+									</ul>
+									<br>
+									<h4>Taxonomy - Name</h4>
+									<p>Taxonomy name.</p>
+									<ul>
+										<li><strong>Label</strong>: Name</li>
+										<li><strong>Example</strong>: Homo sapiens</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#name</li>
+										<li><strong>Source</strong>: Taxonomy</li>
+										<li><strong>Filter Type</strong>: Regular Expression</li>
+									</ul>
+									<br>
+									<h3>Reaction</h3>
+									<p>A Reactome Reaction.</p>
+									<ul>
+										<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/reactome/describe?uri=http%3A%2F%2Fwww.reactome.org%2Fbiopax%2F48887%23BiochemicalReaction3599">Link</a></li>
+										<li><strong>Label</strong>: Reaction</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#BiochemicalReaction</li>
+										<li><strong>Targets</strong>: Reactome Protein, Reactome Molecule, Reactome Complex</li>
+									</ul>
+									<br>
+									<h4>Reaction - Name</h4>
+									<p>Reaction name.</p>
+									<ul>
+										<li><strong>Label</strong>: Name</li>
+										<li><strong>Example</strong>: Uptake of Noradrenaline</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#displayName</li>
+										<li><strong>Source</strong>: Reaction</li>
+										<li><strong>Filter Type</strong>: Regular Expression</li>
+									</ul>
+									<br>
+									<h4>Reaction - Comment</h4>
+									<p>Reaction comments.</p>
+									<ul>
+										<li><strong>Label</strong>: Comment</li>
+										<li><strong>Example</strong>: Noradrenaline is cleared from the synaptic cleft by Noaradrenaline uptake transporter...</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#comment</li>
+										<li><strong>Source</strong>: Reaction</li>
+										<li><strong>Filter Type</strong>: Regular Expression</li>
+									</ul>
+									<br>
+									<h4>Reaction - Xref</h4>
+									<p>Reaction cross-references to other databases (Pubmed ID's).</p>
+									<ul>
+										<li><strong>Label</strong>: Xref</li>
+										<li><strong>Example</strong>: http://identifiers.org/pubmed/9260930</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#xref</li>
+										<li><strong>Source</strong>: Reaction</li>
+										<li><strong>Filter Type</strong>: Regular Expression</li>
+									</ul>
+									<br>
+									<h3>Protein</h3>
+									<p>A Reactome Protein.</p>
+									<ul>
+										<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/reactome/describe?uri=http%3A%2F%2Fwww.reactome.org%2Fbiopax%2F48887%23Protein11243">Link</a></li>
+										<li><strong>Label</strong>: Protein</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#Protein</li>
+										<li><strong>Targets</strong>: Uniprot Protein, Reactome Reaction</li>
+									</ul>
+									<br>
+									<h4>Protein - Name</h4>
+									<p>Protein name.</p>
+									<ul>
+										<li><strong>Label</strong>: Name</li>
+										<li><strong>Example</strong>: Proinsulin</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#displayName</li>
+										<li><strong>Source</strong>: Protein</li>
+										<li><strong>Filter Type</strong>: Exact Match</li>
+										<li><strong>Literal Type</strong>: http://www.w3.org/2001/XMLSchema#string</li>
+									</ul>
+									<br>
+									<h4>Protein - Gene Ontology Cellular Location Name</h4>
+									<p>The name of the annotated Gene Ontology Cellular Location for this protein</p>
+									<ul>
+										<li><strong>Label</strong>: GO Cellular Location Name</li>
+										<li><strong>Example</strong>: plasma membrane</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#displayName</li>
+										<li><strong>Source</strong>: Protein</li>
+										<li><strong>Filter Type</strong>: Regular Expression</li>
+									</ul>
+									<br>
+									<h4>Protein - Gene Ontology Cellular Location ID</h4>
+									<p>The ID of the annotated Gene Ontology Cellular Location for this protein</p>
+									<ul>
+										<li><strong>Label</strong>: GO Cellular Location ID</li>
+										<li><strong>Example</strong>: http://purl.obolibrary.org/obo/GO:0005886</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#cellularLocation</li>
+										<li><strong>Source</strong>: Protein</li>
+										<li><strong>Filter Type</strong>: Exact Match. Enter your desired id exactly, like: 0005886.</li>
+									</ul>
+									<br>
+									<h3>Complex</h3>
+									<p>A Reactome Complex.</p>
+									<ul>
+										<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/reactome/describe?uri=http%3A%2F%2Fwww.reactome.org%2Fbiopax%2F48887%23Complex4525">Link</a></li>
+										<li><strong>Label</strong>: Complex</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#Complex</li>
+										<li><strong>Targets</strong>: Reactome Protein, Reactome Reaction, Reactome Complex, Rectome Molecule</li>
+									</ul>
+									<br>
+									<h4>Complex - Name</h4>
+									<p>The name of the complex.</p>
+									<ul>
+										<li><strong>Label</strong>: Name</li>
+										<li><strong>Example</strong>: plasma membrane</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#displayName</li>
+										<li><strong>Source</strong>: Complex</li>
+										<li><strong>Filter Type</strong>: Exact Match. Enter your desired id exactly, like: 0005886.</li>
+									</ul>
+									<br>
+									<h4>Complex - Gene Ontology Cellular Location ID</h4>
+									<p>The ID of the annotated Gene Ontology Cellular Location for this complex.</p>
+									<ul>
+										<li><strong>Label</strong>: GO Cellular Location ID</li>
+										<li><strong>Example</strong>: http://purl.obolibrary.org/obo/GO:0005886</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#cellularLocation</li>
+										<li><strong>Source</strong>: Complex</li>
+										<li><strong>Filter Type</strong>: Exact Match. Enter your desired id exactly, like: 0005886.</li>
+									</ul>
+									<br>
+									<h3>Molecule</h3>
+									<p>A Reactome Molecule.</p>
+									<ul>
+										<li>RDF Example: <a target="_blank" href="http://www.ebi.ac.uk/rdf/services/reactome/describe?uri=http%3A%2F%2Fwww.reactome.org%2Fbiopax%2F48887%23Complex4525">Link</a></li>
+										<li><strong>Label</strong>: Molecule</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#Molecule</li>
+										<li><strong>Targets</strong>: Reactome Reaction</li>
+									</ul>
+									<br>
+									<h4>Molecule - Name</h4>
+									<p>The Reactome name of the molecule.</p>
+									<ul>
+										<li><strong>Label</strong>: Name</li>
+										<li><strong>Example</strong>: H2O, NAd</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#displayName</li>
+										<li><strong>Source</strong>: Molecule</li>
+										<li><strong>Filter Type</strong>: Regular Expression</li>
+									</ul>
+									<br>
+									<h4>Molecule - Label</h4>
+									<p>The label of the molecule.</p>
+									<ul>
+										<li><strong>Label</strong>: Name</li>
+										<li><strong>Example</strong>: Water, Norepinephrine</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#name</li>
+										<li><strong>Source</strong>: Molecule</li>
+										<li><strong>Filter Type</strong>: Regular Expression</li>
+									</ul>
+									<br>
+									<h4>Molecule - Gene Ontology Cellular Location ID</h4>
+									<p>The ID of the annotated Gene Ontology Cellular Location for this molecule.</p>
+									<ul>
+										<li><strong>Label</strong>: GO Cellular Location ID</li>
+										<li><strong>Example</strong>: http://purl.obolibrary.org/obo/GO:0005576</li>
+										<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#cellularLocation</li>
+										<li><strong>Source</strong>: Molecule</li>
+										<li><strong>Filter Type</strong>: Exact Match. Enter your desired id exactly, like: 0005576.</li>
+									</ul>
+									<br>
+									<span class="pull-right"><a href="#" title="Back to top"><i class="icon-arrow-up"></i></a></span>
+								</section>
+
+								<!-- SECTION UNIPROT -->
+								<section id="uniprot">
+									<div class="page-header">
+										<h1>Uniprot</h1>
+									</div>
+									<h2>Uniprot Schema</h2>
+									<p>In the following image you can see the implemented RDF Schema. For further reference, see the original <a href="http://www.ebi.ac.uk/rdf/documentation/uniprot">Uniprot Documentation</a>.<br>
+										<strong>NOTE</strong>: The implementation is incomplete, and does not reflect the whole RDF Schema by EBI.</p>
+										<br>
+										<img src="images/Uniprot_RDF_schema.png">
+										<br>
+
+										<h2>UNIPROT - SPARQL<span style="color:#00bba6;">edit</span> Implementation</h2>
+										<p>The following list should give an overview of all resources, literals and connections that were implemented in the prototype.</p>
+										<span class="pull-right"><a href="#" title="Back to top"><i class="icon-arrow-up"></i></a></span>
+										<hr>
+
+
+										<h3>Protein</h3>
+										<p>A uniprot protein.</p>
+										<ul>
+											<li>RDF Example: <a target="_blank" href="http://beta.sparql.uniprot.org/sparql?query=DESCRIBE+%3Chttp%3a%2f%2fpurl.uniprot.org%2funiprot%2fP38398%3E&offset=0">Link</a></li>
+											<li><strong>Label</strong>: Protein</li>
+											<li><strong>RDF Type</strong>: http://purl.uniprot.org/core/Protein</li>
+											<li><strong>Targets Resources</strong>: Uniprot Keyword, Uniprot GO Term, Uniprot Taxonomy, Uniprot Citation, Uniprot Gene</li>
+										</ul>
+										<br>
+										<h4>Protein - Label</h4>
+										<p>Protein name.</p>
+										<ul>
+											<li><strong>Label</strong>: Label</li>
+											<li><strong>Example</strong>: Breast cancer type 1 susceptibility protein</li>
+											<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#displayName</li>
+											<li><strong>Source</strong>: Protein</li>
+											<li><strong>Filter Type</strong>: Regular Expression</li>
+										</ul>
+										<br>
+										<h4>Protein - ID</h4>
+										<p>Protein ID.</p>
+										<ul>
+											<li><strong>Label</strong>: ID</li>
+											<li><strong>Example</strong>: P38398</li>
+											<li><strong>RDF Type</strong>: Special</li>
+											<li><strong>Source</strong>: Protein</li>
+											<li><strong>Filter Type</strong>: Exact Match.</li>
+										</ul>
+										<br>
+										<h4>Protein - Mnemonic</h4>
+										<p>Protein mnemonic.</p>
+										<ul>
+											<li><strong>Label</strong>: Mnemonic</li>
+											<li><strong>Example</strong>: BRCA1_HUMAN</li>
+											<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#displayName</li>
+											<li><strong>Source</strong>: Protein</li>
+											<li><strong>Filter Type</strong>: Exact Match</li>
+										</ul>
+										<br>
+										<h4>Protein - Review Status</h4>
+										<p>Protein review status. "0" means not reviewed, "1" means reviewed</p>
+										<ul>
+											<li><strong>Label</strong>: Reviewed?</li>
+											<li><strong>Example</strong>: 1, true</li>
+											<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#displayName</li>
+											<li><strong>Source</strong>: Protein</li>
+											<li><strong>Filter Type</strong>: Exact Match. If you want to filter only reviewed proteins, set this to "1"/"true"/"yes".</li>
+										</ul>
+										<br>
+										<h4>Protein - Alternative Name(s)</h4>
+										<p>Protein alternative name.</p>
+										<ul>
+											<li><strong>Label</strong>: Alt. Name</li>
+											<li><strong>Example</strong>: RING finger protein 53</li>
+											<li><strong>RDF Type</strong>: http://purl.uniprot.org/core/fullName</li>
+											<li><strong>Source</strong>: Protein</li>
+											<li><strong>Filter Type</strong>: Regular Expression</li>
+										</ul>
+										<br>
+
+										<h3>GO Term / Keyword</h3>
+										<p>A Gene Ontology Term / Uniprot Keyword. Currently both are processed in the same way, as they are of the same RDF Type.</p>
+										<ul>
+											<li>GO Term RDF Example: <a target="_blank" href="http://beta.sparql.uniprot.org/sparql?query=DESCRIBE+%3Chttp://purl.uniprot.org/go/0007049%3E&offset=0">Link</a></li>
+											<li>Keyword RDF Example: <a target="_blank" href="http://beta.sparql.uniprot.org/sparql?query=DESCRIBE+%3Chttp%3a%2f%2fpurl.uniprot.org%2fkeywords%2f225%3E&offset=0">Link</a></li>
+											<li><strong>Label</strong>: .</li>
+											<li><strong>RDF Type</strong>: http://purl.uniprot.org/core/Concept</li>
+											<li><strong>Targets Resources</strong>: None</li>
+										</ul>
+										<br>
+										<h4>Keyword/GO Label</h4>
+										<p>Keyword/GO label.</p>
+										<ul>
+											<li><strong>Label</strong>: Label</li>
+											<li><strong>GO Example</strong>: cell cycle</li>
+											<li><strong>Keyword Example</strong>: Disease mutation</li>
+											<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#displayName</li>
+											<li><strong>Source</strong>: Keyword/GO</li>
+											<li><strong>Filter Type</strong>: Exact Match</li>
+										</ul>
+										<br>
+										<h4>Keyword/GO Comment</h4>
+										<p>Keyword/GO Comment.</p>
+										<ul>
+											<li><strong>Label</strong>: Comment</li>
+											<li><strong>GO Example</strong>: The membrane surrounding a cell that separates the cell from its external environment. It consists of a phospholipid bilayer and associated proteins.</li>
+											<li><strong>Keyword Example</strong>: Protein involved in the synthesis of carotenoids...</li>
+											<li><strong>RDF Type</strong>: http://www.biopax.org/release/biopax-level3.owl#displayName</li>
+											<li><strong>Source</strong>: Keyword/GO</li>
+											<li><strong>Filter Type</strong>: Regular Expression</li>
+										</ul>
+										<br>
+
+										<h3>Taxonomy</h3>
+										<p>Uniprot Taxonomy</p>
+										<ul>
+											<li>RDF Example: <a target="_blank" href="http://beta.sparql.uniprot.org/?query=DESCRIBE%20%3Chttp://purl.uniprot.org/taxonomy/9606%3E">Link</a></li>
+											<li><strong>Label</strong>: Taxonomy</li>
+											<li><strong>RDF Type</strong>: http://purl.uniprot.org/core/Taxon</li>
+											<li><strong>Targets Resources</strong>: None</li>
+										</ul>
+										<br>
+										<h4>Taxonomy ID</h4>
+										<p>Taxonomy ID.</p>
+										<ul>
+											<li><strong>Label</strong>: ID</li>
+											<li><strong>GO Example</strong>: 9606</li>
+											<li><strong>RDF Type</strong>: Special</li>
+											<li><strong>Source</strong>: Taxonomy</li>
+											<li><strong>Filter Type</strong>: Exact Match</li>
+										</ul>
+										<br>
+										<h4>Taxonomy Name</h4>
+										<p>Taxonomy scientific name.</p>
+										<ul>
+											<li><strong>Label</strong>: Name</li>
+											<li><strong>GO Example</strong>: Homo sapiens</li>
+											<li><strong>RDF Type</strong>: http://purl.uniprot.org/core/scientificName</li>
+											<li><strong>Source</strong>: Taxonomy</li>
+											<li><strong>Filter Type</strong>: Exact Match</li>
+										</ul>
+										<br>
+										<h4>Taxonomy Mnemonic</h4>
+										<p>Taxonomy Mnemonic.</p>
+										<ul>
+											<li><strong>Label</strong>: Mnemonic</li>
+											<li><strong>GO Example</strong>: HUMAN</li>
+											<li><strong>RDF Type</strong>: http://purl.uniprot.org/core/mnemonic</li>
+											<li><strong>Source</strong>: Taxonomy</li>
+											<li><strong>Filter Type</strong>: Exact Match</li>
+										</ul>
+										<br>
+
+										<h3>Citation</h3>
+										<p>Uniprot Citation</p>
+										<ul>
+											<li>RDF Example: <a target="_blank" href="http://beta.sparql.uniprot.org/sparql?query=DESCRIBE+%3Chttp%3a%2f%2fpurl.uniprot.org%2fcitations%2f7545954%3E&offset=0">Link</a></li>
+											<li><strong>Label</strong>: Citation</li>
+											<li><strong>RDF Type</strong>: http://purl.uniprot.org/core/Journal_Citation</li>
+											<li><strong>Targets Resources</strong>: None</li>
+										</ul>
+										<br>
+										<h4>Citation Title</h4>
+										<p>Citation Title.</p>
+										<ul>
+											<li><strong>Label</strong>: Title</li>
+											<li><strong>Example</strong>: Germline BRCA1 alterations in a population-based series of ovarian cancer cases.</li>
+											<li><strong>RDF Type</strong>: http://purl.uniprot.org/core/title</li>
+											<li><strong>Source</strong>: Citation</li>
+											<li><strong>Filter Type</strong>: Exact Match. (Performance issue)</li>
+										</ul>
+										<br>
+										<h4>Citation Comment</h4>
+										<p>Citation Comment.</p>
+										<ul>
+											<li><strong>Label</strong>: Comment</li>
+											<li><strong>Example</strong>: The objective of this study was to provide more accurate frequency estimates of breast cancer susceptibility gene 1 ( BRCA1 ) ...</li>
+											<li><strong>RDF Type</strong>: http://www.w3.org/2000/01/rdf-schema#comment</li>
+											<li><strong>Source</strong>: Citation</li>
+											<li><strong>Filter Type</strong>: Regular Expression</li>
+										</ul>
+										<br>
+										<h4>Citation Author</h4>
+										<p>Citation Author.</p>
+										<ul>
+											<li><strong>Label</strong>: Author</li>
+											<li><strong>Example</strong>: John Doe</li>
+											<li><strong>RDF Type</strong>: http://purl.uniprot.org/core/author</li>
+											<li><strong>Source</strong>: Citation</li>
+											<li><strong>Filter Type</strong>: Regular Expression</li>
+										</ul>
+										<br>
+										<h4>Citation Pubmed ID Reference</h4>
+										<p>Citation Pubmed ID Reference.</p>
+										<ul>
+											<li><strong>Label</strong>: Pubmed ID Reference</li>
+											<li><strong>Example</strong>: 10196379</li>
+											<li><strong>RDF Type</strong>: http://purl.uniprot.org/core/author</li>
+											<li><strong>Source</strong>: Citation</li>
+											<li><strong>Filter Type</strong>: Exact Match</li>
+										</ul>
+										<br>
+
+
+
+
+									</section>
+
+								</div> <!-- close div class="span9 pull-right"-->
+							</div> <!-- close div class="row-fluid" -->
+						</div> <!-- close  div class="tab-pane" id="databases"-->
+
+
+
+			<!-- TAB Source -->
+			<div class="tab-pane" id="source">
+				<div class="row-fluid">
+
+					<div class="span10 pull-right">
+							<!-- SECTION ARCHITECTURE -->
+							<section id="architecture">
+								<div class="page-header">
+									<h1>Source</h1>
+								</div>
+								<p>The source code of SPARQLGraph can be accessed at <a href="http://www.icbi.at/svnsparqlgraph/sparqlgraph/trunk/">here</a> .</p>
+								<span class="pull-right"><a href="#" title="Back to top"><i class="icon-arrow-up"></i></a></span>
+							</section>
+
+						</div> <!-- close div class="span9 pull-right" -->
+					</div> <!-- close div class="row-fluid" -->
+				</div> <!-- close div class="tab-pane active" id="general" -->
+			<!-- TAB GENERAL -->
+			<div class="tab-pane" id="sparql">
+				<div class="row-fluid">
+<!-- 					<div class="span2 bs-docs-sidebar pull-left">
+						<ul class="nav nav-list bs-docs-sidenav affix">
+							<li><a href="#triple-patterns">Triple Patterns</a></li>
+						</ul>
+					</div> -->
+					<div class="span10 pull-right">
+							<!-- SECTION TRIPLE PATTERNS -->
+							<section id="triple-patterns">
+								<div class="page-header">
+									<h1>Triple Patterns</h1>
+								</div>
+								<p>The following image lists all currently implemented SPARQL Expressions and Tripple Patterns.</p>
+								<div>
+									<img src="images/triple_patterns.png">
+								</div>
+								<span class="pull-right"><a href="#" title="Back to top"><i class="icon-arrow-up"></i></a></span>
+							</section>
+							<!-- SECTION ARCHITECTURE -->
+							<section id="architecture">
+								<div class="page-header">
+									<h1>Query Processing</h1>
+								</div>
+								<p>A query is processed in the following way:
+								</p>
+								<ol>
+									<li>A user creates a query with the graphical query editor.</li>
+									<li>The query gets validated. (Very basic checking atm).</li>
+									<li>The query is internally converted from XML (graph representation) to JSON.</li>
+									<li>The JSON is then converted into a SPARQL Query.
+										<ul>
+											<li>Triples are generated based on connections</li>
+											<li>Subjects, Predicates, Objects and allowed connections are curated manually currently.</li>
+											<li>Basic priority ordering of Triples and Services currently. Triples with exact matches or Filters are priorized, as well as Services with Filters and/or exact matches.</li>
+										</ul>
+									</li>
+									<li>The query is then send to a remote endpoint, which is currently the Atlas SPARQL endpoint by EBI. The requested format is JSON.</li>
+									<li>After receiving the JSON result, it is processed and displayed as a table to the user.</li>
+								</ol>
+								<div>
+									<img src="images/architecture.png">
+								</div>
+								<span class="pull-right"><a href="#" title="Back to top"><i class="icon-arrow-up"></i></a></span>
+							</section>
+
+						</div> <!-- close div class="span9 pull-right" -->
+					</div> <!-- close div class="row-fluid" -->
+				</div> <!-- close div class="tab-pane active" id="general" -->
+
+
+
+
+
+
+					</div> <!-- close div class="tab-content" -->
+
+
+					<footer>
+						<!-- <p>&copy; Company 2013</p> -->
+					</footer>
+
+				</div> <!-- close  div id="documentation" class="container-fluid"-->
+
+			</template>

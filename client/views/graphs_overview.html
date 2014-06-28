@@ -1,0 +1,123 @@
+<template name="graphs">
+  {{#if currentUser}}
+    {{#if loadingProjects}}
+      {{>loading}}
+    {{else}}
+      {{#if hasGraphs}}
+
+        <!-- filter -->
+        <div class="filter-container">
+          <h2>User Queries</h2>
+          <p class="lead">These queries are your private, shared and template queries.</p>
+          <div class="filter">
+            {{>filter}}
+          </div>
+        </div>
+        <!-- graph list -->
+        <div class="row-fluid graphList-container">
+          <ul id="graphsList" class="list">
+
+              <!-- "TABLE" HEADER CONTAINING SORT BUTTONS (HIDDEN IN GRID MODE)-->
+              <div class="list_header row-fluid">
+                <div class="meta name active desc span6" id="SortByName">
+                  Name
+                </div>
+                <div class="meta region span1">Author</div>
+                <div class="meta rec span2">Category</div>
+                <div class="meta visibility span1">Visible</div>
+                <!-- <div class="meta executions span1" id="SortByExecutions">Runs</div> -->
+                <div class="meta creation span1">Creation</div>
+                <div class="meta lastEdit span1">Last Edit</div>
+              </div>
+          
+              <!-- FAIL ELEMENT -->
+              <div class="fail_element anim250">Sorry — could not find any queries matching these criteria!</div>
+          
+              {{#each graphs}}
+                {{>graphsItem}}
+              {{/each}} 
+
+          </ul>
+        </div>
+      {{else}}
+        <div class="row-fluid" style="margin: 20px auto; width: 1200px;">
+          <div class="span8 offset2" style="text-align:center;">
+              <h3>No Queries found.</h3>
+              <a href="#" class="btn btn-success btn-medium create-new">Create a New Graph</a>
+              <a href="/templates" class="btn btn-success btn-medium">Show Templates</a>
+              <a href="/docs" class="btn btn-success btn-medium">Show Documentation</a>
+          </div>
+        </div>
+      {{/if}}
+    {{/if}}
+  {{else}}
+  <div class="row" style="text-align:center;margin-top: 80px;">
+    <h3>The editor is only available to logged in users.</h3>
+    <p class="lead">If you just want to try out the editor, you can use the Demo Account:</p>
+    <p class="lead">User: demo, Password: password</p>
+  </div>
+
+  {{/if}}
+
+</template>
+
+<template name="graphsItem">
+  <li class="row-fluid mix {{{categories_list}}} mix_all" data-name="{{this.name}}">
+    <div class="meta name span6">
+
+      <div class="titles">
+        <h4><a class="item-link" href="graph/{{_id}}">{{name}}</a></h4>
+        <p>{{desc}}</p>
+      </div>
+    </div>
+    <div class="meta region span1">
+      <p>{{#if ownerName}}{{ownerName}}{{else}}{{owner}}{{/if}}</p>
+    </div>
+    <div class="meta category span2">
+      <ul>
+        {{#each categories_li}} {{{this}}} {{/each}}
+      </ul>
+    </div>
+    <div class="meta visibility span1">
+      <p {{#if premade}}class="template"{{/if}}>{{visibility}}</p>
+    </div>
+    <div class="meta creation span1">
+      <p>{{date_pretty this}}</p>
+    </div>
+    <div class="meta lastEdit span1">
+      <p>{{edit_pretty this}}</p>
+    </div>
+
+  </li>
+</template>
+
+<template name="filter">
+  <div class="filter row-fluid">
+    <nav class="controls just span12">
+      <div class="group" id="Sorts" style="">
+        <br>
+        {{#constant}}
+        <ul id="singleFilters" class="nav nav-pills">
+          <li class="active" data-filter=""><a href="#">All</a></li>
+          <li data-filter="DEMO"><a href="#">Demo</a></li>
+          <li data-filter="embl_atlas"><a href="#">Atlas</a></li>
+          <li data-filter="embl_chembl"><a href="#">ChEMBL</a></li>
+          <li data-filter="embl_reactome"><a href="#">Reactome</a></li>
+          <li data-filter="embl_uniprot"><a href="#">Uniprot</a></li>
+          <li data-filter="drugbank"><a href="#">Drugbank</a></li>
+          <li data-filter="gene"><a href="#">Entrez</a></li>
+          <li data-filter="kegg"><a href="#">KEGG</a></li>
+          <li data-filter="pharmgkb"><a href="#">PharmgKB</a></li>
+          <li data-filter="uncategorized"><a href="#">Uncategorized</a></li>
+        </ul>
+        <ul id="typeFilters" class="nav nav-pills">
+          <li data-filter="private"><a>Private</a></li>
+          <li data-filter="public"><a>Shared</a></li>
+          <li data-filter="template"><a>Templates</a></li>
+        </ul>
+        {{/constant}}
+        <a href="#" class="btn btn-success btn-medium create-new" style="float:right">Create a New Query</a>
+      </div>
+    </nav>
+  </div>
+</template>

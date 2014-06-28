@@ -1,0 +1,152 @@
+html,
+body {
+  height: 100%;
+  padding-top: 0px !important;
+  /* The html and body elements cannot have any padding or margin. */
+}
+/*
+LOGIN
+*/
+a.login-link-text {
+	color: #dedede;
+	text-decoration: none;
+}
+a.login-link-text:hover {
+	color: white;
+}
+.login-link-and-dropdown-list {
+	padding: 13px;
+}
+#login-dropdown-list {
+	margin-top: 10px;
+}
+/*
+HEAD
+*/
+a.brand {
+  color: white !important;
+}
+.navbar-inverse .navbar-inner {
+  background-color: #2c2c2c; /* fallback color, place your own */
+
+  /* Gradients for modern browsers, replace as you see fit */
+  background-image: -moz-linear-gradient(top, #333333, #222222);
+  background-image: -ms-linear-gradient(top, #333333, #222222);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#333333), to(#222222));
+  background-image: -webkit-linear-gradient(top, #333333, #222222);
+  background-image: -o-linear-gradient(top, #333333, #222222);
+  background-image: linear-gradient(top, #333333, #222222);
+  background-repeat: repeat-x;
+
+  /* IE8-9 gradient filter */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#222222', GradientType=0);
+}
+
+.hero-unit {
+	padding:20px;
+}
+
+input#name {
+  margin-bottom: 0px;
+}
+
+.jumbotron {
+  padding: 30px;
+  margin-bottom: 30px;
+  font-size: 21px;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #eeeeee;
+}
+
+.jumbotron h1 {
+  line-height: 1;
+  color: inherit;
+}
+
+.jumbotron p {
+  line-height: 1.4;
+}
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding: 50px 60px;
+    border-radius: 6px;
+  }
+  .jumbotron h1 {
+    font-size: 63px;
+  }
+}
+
+/*
+BODY
+*/
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 60px auto  -60px; /* same as the footer */
+}
+.wrapper .container {
+  padding-bottom:60px;
+  padding-top: 60px;
+}
+
+
+/*
+FOOTER
+*/
+#footer,#push {
+  height: 60px;
+}
+#footer {
+  background-color: #f5f5f5;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+.credit {
+  margin: 20px 0;
+  text-align:center;
+}
+/**************************************
+***************************************
+VIEWS
+***************************************
+**************************************/
+
+/*************************************
+Private Graphs Overview
+*************************************/
+.list-private-graphs li:nth-child(4n+1) {
+  margin-left: 0px;
+  clear:both;
+}
+.list-private-graphs li .description {
+  font-size: 10px;
+  min-height: 40px;
+}
+
+/*************************************
+Editor
+*************************************/
+#results_container table tbody{
+  font-size: 12px;
+}
+#results_container {
+  margin-bottom: 30px;
+}
+
+#editor_sidebar.affix {
+  width: 22.6%;
+  background: white;
+  z-index: 10;
+  /*padding: 10px;*/
+}

@@ -1,0 +1,14 @@
+{
+  "packages": {
+    "router": {},
+    "datatables": {},
+    "select2": {},
+    "accounts-ui-bootstrap-dropdown": {},
+    "font-awesome": {},
+    "verbalExpressions": {},
+    "jquery-scrollTo": {},
+    "bootboxjs": {},
+    "event-hooks": {},
+    "moment": {}
+  }
+}

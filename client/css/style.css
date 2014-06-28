@@ -1,0 +1,257 @@
+
+/*
+GENERAL
+*/
+
+html,
+body {
+  height: 100%;
+  padding-top: 0px !important;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/*
+LOGIN
+*/
+a.login-link-text {
+	color: #dedede;
+	text-decoration: none;
+}
+a.login-link-text:hover {
+	color: white;
+}
+.login-link-and-dropdown-list {
+	padding: 13px;
+}
+.login-text-and-button {
+  text-align: center;
+}
+#login-buttons .dropdown-menu {
+  z-index: 1000000;
+}
+#login-buttons .dropdown-menu .or {
+  text-align: center;padding: 10px;
+}
+#login-buttons-open-change-password {
+  display: none;
+}
+/*
+HEAD
+*/
+a.brand {
+  color: white !important;
+}
+a.brand img {
+  height: 20px;
+  margin-right: 10px;
+}
+.navbar-inverse .navbar-inner {
+  background-color: #2c2c2c; /* fallback color, place your own */
+
+  /* Gradients for modern browsers, replace as you see fit */
+  background-image: -moz-linear-gradient(top, #333333, #222222);
+  background-image: -ms-linear-gradient(top, #333333, #222222);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#333333), to(#222222));
+  background-image: -webkit-linear-gradient(top, #333333, #222222);
+  background-image: -o-linear-gradient(top, #333333, #222222);
+  background-image: linear-gradient(top, #333333, #222222);
+  background-repeat: repeat-x;
+
+  /* IE8-9 gradient filter */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#222222', GradientType=0);
+}
+
+.hero-unit {
+	padding:20px;
+  background-color: #ffffff;
+}
+
+.hero-unit img{
+  max-width: 200px;
+  float: right;
+}
+
+input#name {
+  margin-bottom: 0px;
+}
+
+.jumbotron {
+  padding: 30px;
+  margin-bottom: 30px;
+  font-size: 21px;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+  text-align: center;
+}
+
+.jumbotron h1 {
+  line-height: 1;
+  color: inherit;
+  font-size: 80px;
+}
+
+.jumbotron .lead {
+  line-height: 1.4;
+}
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding: 50px 60px;
+    border-radius: 6px;
+  }
+}
+
+/*
+HOMEPAGE
+*/
+.container-fluid.home-slider-container {
+  background-color: #00bba6;
+  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2),inset 0 -3px 7px rgba(0,0,0,.2);
+  -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2),inset 0 -3px 7px rgba(0,0,0,.2);
+  box-shadow: inset 0 3px 7px rgba(0,0,0,.2),inset 0 -3px 7px rgba(0,0,0,.2);
+}
+.container.home-feature-container .span4{
+  text-align: center;
+}
+.home-feature-container {
+  margin-top: 50px;
+}
+.container.home-feature-container h2{
+  font-weight: normal;
+}
+.jumbo-heading {
+  font-size: 100px;
+}
+.jumbo-subheading {
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+
+.heading-use-case {
+  font-size: 90px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  font-weight: normal;
+  line-height: 1;
+}
+
+.heading-query-use-case {
+  font-weight: normal;
+  font-size: 45px;
+  font-style: italic;
+  line-height: 1.1;
+  padding: 10px 30px;
+}
+
+/*
+BODY
+*/
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 40px auto  -60px; /* same as the footer */
+}
+.wrapper .container {
+  padding-bottom:80px;
+}
+
+
+/*
+FOOTER
+*/
+#footer,#push {
+  height: 60px;
+}
+#footer {
+  background-color: #f5f5f5;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+.credit {
+  margin: 20px 0;
+  text-align:center;
+}
+/**************************************
+***************************************
+VIEWS
+***************************************
+**************************************/
+
+/*************************************
+Graphs Overview
+*************************************/
+.graphList-container {
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+
+.graphs-overview-item li:nth-child(6n+1) {
+  margin-left: 0px;
+  clear:both;
+}
+.graphs-overview-item li .description {
+  font-size: 12px;
+  min-height: 50px;
+  word-wrap: break-word;
+}
+
+.graphs-overview-item li .title {
+  margin: 0px;
+  padding: 10px;
+  border-bottom: 1px solid #dedede;
+}
+
+.graphs-overview-item li .label.Drug, .filter .label.Drug {background-color: #ff1100;}
+.graphs-overview-item li .label.Gene, .filter .label.Gene {background-color: #ffaa00;}
+.graphs-overview-item li .label.Drugbank, .filter .label.Drugbank {/*default blue*/}
+.graphs-overview-item li .label.Disease, .filter .label.Disease {background-color: #ff6600;}
+.graphs-overview-item li .label.Pharmgkb, .filter .label.Pharmgkb {background-color: #8b2e3f;}
+.graphs-overview-item li .label.Affymetrix, .filter .label.Affymetrix {background-color: #b71234;}
+.graphs-overview-item li .label.ERROR, .filter .label.ERROR {background-color: red;}
+.graphs-overview-item li .label.WORKING, .filter .label.WORKING {background-color: green;}
+
+/*************************************
+Editor
+*************************************/
+
+#results_container table tbody{
+  font-size: 12px;
+}
+#results_container {
+  margin-bottom: 30px;
+}
+
+#editor_sidebar.affix {
+  width: 22.6%;
+  background: #f9f6f0;
+  z-index: 10;
+}
+#select-category, #s2id_select-category {
+  width: 300px;
+}
+
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #CFCFCF;
+  border-bottom: 1px solid #ffffff;
+}
+
+/*
+ARBOR
+*/
+#btn-arbor-legend:hover {
+  cursor: pointer;
+}
+#arbor_results canvas {
+  background-color: #f9f9f9;
+}

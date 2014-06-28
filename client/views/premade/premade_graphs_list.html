@@ -1,0 +1,89 @@
+<template name="templates">
+  
+    {{#if loadingGraphs}}
+      {{>spinner}}
+    {{else}}
+      {{#if hasGraphs}}
+
+      <!-- filter -->
+      <div class="filter-container">
+        <h2>Template Queries</h2>
+        <p class="lead">These queries are available to everyone.</p>
+        <div class="filter">
+          {{>filterTemplates}}
+        </div>
+      </div>
+      <!-- graph list -->
+      <div class="row-fluid graphList-container">
+        <ul id="graphsList" class="list">
+
+            <!-- "TABLE" HEADER CONTAINING SORT BUTTONS (HIDDEN IN GRID MODE)-->
+            <div class="list_header row-fluid">
+              <div class="meta name active desc span6" id="SortByName">
+                Name
+              </div>
+                <div class="meta region span2">Author</div>
+                <div class="meta rec span2">Category</div>
+                <div class="meta creation span1">Creation</div>
+            </div>
+            <!-- FAIL ELEMENT -->
+            <div class="fail_element anim250">Sorry — could not find any queries matching these criteria!</div>
+            {{#each graphs}}
+              {{>premadeGraph}}
+            {{/each}} 
+
+        </ul>
+      </div>
+    {{else}}
+      <div class="blank-state">
+        <h3>You did not create a query yet!</h3>
+        <p class="bs-subtitle">To create one, jsut click the button below, or have a look at premade queries first. You can also see the <a href="#">Documentation</a>.</p>
+        <a href="#" class="btn black create-new"> + Create a New Query</a>
+      </div>
+    {{/if}}
+  {{/if}}
+
+</template>
+
+<template name="premadeGraph">
+  <li class="row-fluid mix {{{categories_list}}} mix_all" data-name="{{this.name}}">
+    <div class="meta name span6">
+      <div class="span12 titles">
+        <h4><a class="item-link" href="premade/{{_id}}">{{this.name}}</a></h4>
+        <p>{{desc}}</p>
+      </div>
+    </div>
+    <div class="meta owner span2">
+      <p>{{#if ownerName}}{{ownerName}}{{else}}{{owner}}{{/if}}</p>
+    </div>
+    <div class="meta cateogry span2">
+      <ul>
+        {{#each categories_li}} {{{this}}} {{/each}}
+      </ul>
+    </div>
+    <div class="meta creation span1">
+      <p>{{date_pretty this}}</p>
+    </div>
+  </li>
+</template>
+
+
+<template name="filterTemplates">
+  <div class="filter row-fluid">
+    <nav class="controls just span10">
+      <div class="group" id="Sorts">
+        {{#constant}}
+        <ul id="singleFilters" class="nav nav-pills">
+          <li class="active" muh="kuh" data-filter=""><a href="#">All</a></li>
+          <li data-filter="DEMO"><a href="#">Demo</a></li>
+          <li data-filter="embl_atlas"><a href="#">Atlas</a></li>
+          <li data-filter="embl_chembl"><a href="#">ChEMBL</a></li>
+          <li data-filter="embl_reactome"><a href="#">Reactome</a></li>
+          <li data-filter="embl_uniprot"><a href="#">Uniprot</a></li>
+          <li data-filter="uncategorized"><a href="#">Uncategorized</a></li>
+        </ul>
+        {{/constant}}
+      </div>
+    </nav>
+  </div>
+</template>

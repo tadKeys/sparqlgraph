@@ -1,0 +1,258 @@
+<template name="editor">
+	{{#if currentUser}}
+		<!-- GRAPH SETTINGS -->
+		<div class="row-fluid">
+			<div class="span3">
+				<h3>Graph Settings</h3>
+				<div id="editor_sidebar" >
+					<h5>Title</h5>
+						<input class="input-block-level" type="text" id="name" placeholder="Name" value="{{graph.name}}">
+						<p id="nameChange" class="muted" style="display:none"></p>
+					<h5>Description</h5>
+						<textarea placeholder="Description..." id="description" rows="10" class="input-block-level" value="{{graph.desc}}">{{graph.desc}}</textarea>
+					<h5>Category</h5>
+					 	<select multiple id="select-category">
+					        <option value="embl_atlas">EMBL - Atlas</option>
+					        <option value="embl_chembl">EMBL - CHEMBL</option>
+					        <option value="embl_reactome">EMBL - REACTOME</option>
+					        <option value="embl_uniprot">EMBL - UNIPROT</option>
+					        <option value="fq">Federated Query</option>
+					        <option value="drugbank">Drugbank</option>
+					        <option value="kegg">KEGG</option>
+					        <option value="gene">Gene</option>
+					        <option value="pharmgkb">PharmgKBKB</option>
+					        <option value="ERROR">ERROR</option>
+					        <option value="WORKING">WORKING</option>
+					        <option value="DEMO">DEMO</option>
+					    </select>
+					<div class="editor-visibility-container">
+						<h5>Visibility</h5>
+						<div id="graph-visibility" class="btn-group">
+					  		<button id="private" class="btn {{privateActive}}">Private</button>
+					  		<button id="public" class="btn {{publicActive}}">Shared</button>
+					  		<button id="template" class="btn {{templateActive}}">Template</button>
+						</div>
+					</div>
+					<hr>
+			  		<button id="run" class="btn btn-success"><i class="icon-play icon-white"></i> Run</button>
+			  		<button id="cancel" style="display:none;" class="btn btn-warning"><i class="icon-remove icon-white"></i> Cancel</button>
+			  		<button id="save" class="btn btn-primary"><i class="icon-hdd icon-white"></i> Save</button>
+			  		<button id="delete" class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete</button>
+			  		<button id="debug-run" href="#sparql-modal" type="button" class="btn" data-toggle="modal" data-backdrop="static" data-keyboard="false">Debug Run</button>
+				</div>
+				{{> disqus}}
+			</div>
+
+
+			<div class="span9">
+
+				<div class="row-fluid">
+					<div class="span9">
+						<h3>Graph Editor</h3>
+						<p>
+							<button id="zoomIn" class="btn"><i class="icon-zoom-in"></i> Zoom In</button>
+							<button id="zoomOut" class="btn"><i class="icon-zoom-out"></i> Zoom Out</button>
+							<button id="print" class="btn"><i class="icon-print"></i> Print</button>
+							<button id="intro" class="btn btn-success" style="float:right"><i class="icon-question-sign"></i> Tutorial</button>
+							<button id="legend" class="btn btn-success" style="float:right; margin-right: 15px;"><i class="icon-question-sign"></i> Legend</button>
+						</p>
+						<div id="legend-container" style="display:none;">
+							<div class="span12">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>Style</th>
+											<th>Name</th>
+											<th>Description</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><img src="../images/entity.png"></td>
+											<td>Entity</td>
+											<td>This is an entity. It depicts a real world object, like a gene or a protein. On the upper right, you can see the database where this entity is taken from.</td>
+										</tr>
+										<tr>
+											<td><img src="../images/property.png"></td>
+											<td>Property</td>
+											<td>This is a property. It is always bound to a entity, and can not stand alone or be unconnected!</td>
+										</tr>
+										<tr>
+											<td><img src="../images/connection.png"></td>
+											<td>Connection</td>
+											<td>This is a connection. A connection can connect two entities, or a entity and a property. <strong>All</strong> entities/properties have to be connected!</td>
+										</tr>
+										<tr>
+											<td><img src="../images/glyphicons_457_transfer.png"></td>
+											<td>Result Node</td>
+											<td>If a node is tagged with this icon (on the upper left), then the node will be part of the result set. If no node is tagged with this icon, then all nodes will be ppart of the result set. To add this tag to a node, right click the node and choose "Add to Result Set".</td>
+										</tr>
+										<tr>
+											<td><img src="../images/glyphicons_049_star.png"></td>
+											<td>Template Node</td>
+											<td>If a node is tagged with this icon (on the lower left), then the node will be a template node, which means it is <strong>editable</strong>. You can edit the value of this node by double clicking the node. The idea of this is to have a query construct which can answer similar questions, by editing this node.</td>
+										</tr>
+										<tr>
+											<td><img src="../images/glyphicons_117_embed.png"></td>
+											<td>Any Relation (Right Click Menu)</td>
+											<td><strong>Advanced:</strong> This creates a variable relation between the two connected nodes. SPARQL Pattern: ?source ?relation ?target.</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>Tooltip</td>
+											<td>Hover over a entity or property to get information for this node. Usually you get allowed connection partners and some more info.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						{{#constant}}
+							<div id="graph" style="position:relative;overflow:hidden;cursor:default;" class="{{getViewType}}">
+								<center id="splash" style="padding-top:230px;">
+									<img src="../images/loading.gif">
+								</center>
+							</div>
+							<div class="endpoints-container">
+								<h5 style="display: inline-block;">Endpoint Availability:</h5>
+								<span class="endpoints">
+									<span class="endpoint-atlas" data-service="http://www.ebi.ac.uk/rdf/services/atlas/sparql"><i class="fa fa-globe" style="font-size:18px;color:red;"></i>&nbsp;&nbsp;Atlas&nbsp;<span class="status"></span></span>
+									<span class="endpoint-chembl" data-service="http://www.ebi.ac.uk/rdf/services/chembl/sparql"><i class="fa fa-globe" style="font-size:18px;color:red;"></i>&nbsp;&nbsp;ChEmbl&nbsp;<span class="status"></span></span>
+									<span class="endpoint-reactome" data-service="http://www.ebi.ac.uk/rdf/services/reactome/sparql"><i class="fa fa-globe" style="font-size:18px;color:red;"></i>&nbsp;&nbsp;Reactome&nbsp;<span class="status"></span></span>
+									<span class="endpoint-uniprot" data-service="http://beta.sparql.uniprot.org/"><i class="fa fa-globe" style="font-size:18px;color:red;"></i>&nbsp;&nbsp;Uniprot&nbsp;<span class="status"></span></span>
+									<span class="endpoint-uniprot" data-service="http://cu.kegg.bio2rdf.org/sparql"><i class="fa fa-globe" style="font-size:18px;color:red;"></i>&nbsp;&nbsp;KEGG&nbsp;<span class="status"></span></span>
+									<span class="endpoint-uniprot" data-service="http://cu.gene.bio2rdf.org/sparql"><i class="fa fa-globe" style="font-size:18px;color:red;"></i>&nbsp;&nbsp;Entrez&nbsp;<span class="status"></span></span>
+									<span class="endpoint-uniprot" data-service="http://cu.drugbank.bio2rdf.org/sparql"><i class="fa fa-globe" style="font-size:18px;color:red;"></i>&nbsp;&nbsp;Drugbank&nbsp;<span class="status"></span></span>
+									<span class="endpoint-uniprot" data-service="http://cu.pharmgkkb.bio2rdf.org/sparql"><i class="fa fa-globe" style="font-size:18px;color:red;"></i>&nbsp;&nbsp;PharmgKB&nbsp;<span class="status"></span></span>
+									</span>
+							</div>
+						{{/constant}}
+					</div>
+					<div class="span3">
+						<h3 style="display: inline-block;">Toolbar </h3>  <i id="tooltip-toolbar" class="icon-question-sign" style="position: relative; bottom: 12px;" data-title="Toolbar" data-content="<p>Use the toolbar elements to create a graph. Simply drag & drop them into the drawing area to the left (<a href='#'>Documentation</a>).</p>" data-placement="bottom" data-html="true"></i>
+						{{#constant}}<div id="toolbar"></div>{{/constant}}
+				  		<div>
+				  			<h5 style="display: inline-block;">Limit & Offset</h5>
+				  			<i id="tooltip-limit" class="icon-question-sign" data-title="Limit & Offset" data-content="<p>This sets the SPARQL Query's Limit and Offset (<a href='http://www.w3.org/TR/rdf-sparql-query/#modOffset' target='_blank'>Documentation</a>).</p><p><strong>LIMIT: </strong>The LIMIT clause puts an upper bound on the number of solutions returned.</p><p><strong>OFFSET: </strong>OFFSET causes the solutions generated to start after the specified number of solutions.</p>" data-placement="bottom" data-html="true"></i>
+				  		</div>
+				  		<form class="form-inline">
+						  Limit  <input type="text" class="input-small" id="sparql-limit" placeholder="25">
+						  Offset <input type="text" class="input-small" id="sparql-offset" placeholder="0">
+						</form>
+					</div>
+
+				</div>
+
+			</div> <!-- close span9 (graph container) -->
+
+		</div> <!-- close graph container -->
+		<!-- RESULTS -->
+		<div class="row-fluid">
+			{{#isolate}}
+				<div id="results" data-fetching="false" class="row-fluid">
+						<div>
+							<div id="results_table">
+								<h3>Results</h3>
+								<div>
+								<h5 style="float:left;">Results - Table</h5>
+								<button id="download-json" class="btn" style="float:right;"><i class="icon-download"></i> Get JSON</button>
+								<button id="download-csv" class="btn" style="float:right;"><i class="icon-download"></i> Get CSV</button>
+								</div>
+								<br>
+								<div id="results_container">
+									<p>Execute a query first!</p>
+								</div>
+							</div>
+					    	<div id="arbor_results" >
+					    		<div>
+					    			<h5  style="display: inline;">Results - Abor</h5>
+					    			<span id="btn-arbor-legend" class="label label-info" style="margin-left: 20px;">Settings & Help</span>
+					    		</div>
+				    			<div id="arbor_legend" class="row-fluid">
+				    				<div class="span4">
+				    					<h5>Nodes</h5>
+				    					<p>
+				    						<span class="label label-info" style="background-color: #ffaa00;">Label</span>    Gene   
+				    					</p>				    					
+				    					<p>
+				    						<span class="label label-info" style="background-color: #ff1100;">Label</span>    Drug   
+				    					</p>				    					
+				    					<p>
+				    						<span class="label label-info" style="background-color: #ff6600;">Label</span>    Disease   
+				    					</p>
+				    					<p>
+				    						<span class="label label-info" style="background-color: #cccccc;">Label</span>    Association   
+				    					</p>
+				    					<p>
+				    						<span class="label label-info" style="background-color: #f9f9f9;color: black; text-shadow: none;">Label</span>    Text   
+				    					</p>
+				    				</div>
+				    				<div class="span4">
+				    					<h5>Shortcodes</h5>
+				    					<p>
+				    						DGA = Disease Gene Association  
+				    					</p>				    					
+				    					<p>
+				    						DrGA = Drug Gene Association
+				    					</p>				    					
+				    					<p>
+				    						DrTI = Drug Target Interaction (Target is usually a Gene)
+				    					</p>
+				    				</div>
+				    				<div class="span4">
+				    					<h5>Settings</h5>
+										<form>
+										  <fieldset>
+										    <label class="checkbox">
+										      <input id="check-labels" type="checkbox"> Hide Labels
+										    </label>
+										    <label class="checkbox">
+										      <input id="check-associations" type="checkbox"> Hide Associations
+										    </label>
+										  </fieldset>
+										</form>
+				    				</div>
+				    			</div>
+				    			<br>
+					    		<textarea id="arbor_textarea" style="width: 100%; min-height: 200px;"></textarea>
+					    	</div>
+						</div>
+			    </div> <!-- close #results -->
+		    {{/isolate}}
+		</div><!-- close results container-->
+
+	{{else}}
+	  <div class="row" style="text-align:center;margin-top: 80px;">
+	    <h3>The editor is only available to logged in users.</h3>
+	    <p class="lead">If you just want to try out the editor, you can use the Demo Account:</p>
+	    <p class="lead">User: demo, Password: demo</p>
+	  </div>
+	{{/if}}
+
+	<div id="spinner"></div>
+
+
+	<!-- SPARQL modal -->
+	<!-- Button to trigger modal -->
+	 
+	<!-- Modal -->
+	<div id="sparql-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+	    <h3 id="myModalLabel">SPARQL Query</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>This is the converted SPARQL Query. You may edit it and execute it then.</p>
+	    <textarea class="field" id="sparql-query-ta" rows="12" placeholder="SPARQL Query"></textarea>
+	  </div>
+	  <div class="modal-footer">
+	    <button id="debug-modal-hide" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	    <button id="debug-run-btn" class="btn btn-primary">Run Query</button>
+	  </div>
+	</div>
+
+
+</template>
+
+<template name="spinner">
+  <div id="spinner"></div>
+</template>
