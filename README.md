@@ -2,7 +2,7 @@ SPARQLGraph
 ===========
 
 SPARQLGraph - Visual Query Builder for Biological RDF Databases.<br/>
-Winner of the EBI RDFApp competition.
+Winner of the EBI RDFApp competition (https://www.ebi.ac.uk/rdf/ebi-rdfapp-competition-win-ipad-mini).
 
 ### Public instance
 SPARQLGraph can be used for free at<br/>
